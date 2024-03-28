@@ -1,0 +1,39 @@
+.container-custom {
+  display: flex;
+  justify-content: center;
+}
+
+.content-image {
+  background-color: aqua;
+  height: 35vh;
+  width: 100%;
+  background-image: url("https://www.melhoresdestinos.com.br/wp-content/uploads/2018/11/comida-tailandia-capa2020-01.jpg");
+  background-position: center;
+  background-size: cover;
+  border-radius: 1rem;
+  border: solid 4px white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adicionando sombra à borda */
+  margin-top: -4.5rem; /* Deslocamento para cima */
+}
+
+.div-information-container {
+  background-color: #ccc;
+  width: 90%;
+  display: flex;
+}
+
+.div-information-container img {
+  height: 12rem;
+  width: 12rem;
+  position: relative; /* Adicionando posicionamento relativo */
+  top: -4rem; /* Ajustando a posição para cima */
+  z-index: 1; /* Certificando-se de que a imagem esteja à frente do conteúdo anterior */
+}
+
+.div-information {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 4rem;
+}

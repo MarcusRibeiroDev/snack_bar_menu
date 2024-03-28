@@ -6,7 +6,7 @@ function Navbar() {
       <header>
         <div className="container d-flex justify-content-center py-4">
           <nav className="nav">
-            <a className="nav-link" aria-current="page" href="#">
+            <a className="nav-link" href="#">
               <i className="bi bi-house-door-fill"></i>
               Home
             </a>
@@ -16,11 +16,11 @@ function Navbar() {
             </a>
             <a className="nav-link" href="#">
               <i className="bi bi-cart-plus-fill"></i>
-              Link
+              Pedidos
             </a>
             <a className="nav-link" href="#">
               <i className="bi bi-person-fill"></i>
-              Disabled
+              Entrar/Cadastrar
             </a>
           </nav>
         </div>

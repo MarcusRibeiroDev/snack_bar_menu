@@ -1,7 +1,14 @@
+// Hooks
 import { useState, useEffect } from "react";
 
+// CSS
 import "./App.css";
+
+// Components
 import Navbar from "./components/Navbar/Navbar";
+
+// Images
+import Logo from "./assets/images/Logo.png";
 
 function App() {
   const [ScreenSize, setScreenSize] = useState(window.innerWidth);
@@ -25,21 +32,74 @@ function App() {
         <div className="container-custom">
           <div className="content-image"></div>
         </div>
-        <div className="d-flex">
-          <main className="col-9 container d-flex align-items-center flex-column">
+        <div className="d-flex justify-content-center ">
+          <main className="col-md-9 container d-flex align-items-center flex-column">
             <div className="div-information-container">
-              <img
-                src="https://w7.pngwing.com/pngs/784/842/png-transparent-new-york-city-domain-name-registrar-generic-top-level-domain-others-blue-text-logo.png"
-                alt=""
-              />
+              <img src={Logo} alt="" />
               <div className="div-information">
-                <span>Restaurante Tailândes</span>
-                <div>
-                  <span>Apenas agendamento • Abrimos amanhã às 07h00</span>
-                  <i className="bi bi-geo-alt-fill"></i>
-                  <span>Itu, SP</span>
+                <span className="div-information-title">
+                  Restaurante Asíatico
+                </span>
+                <div className="div-information-details">
+                  <span className="information-0">
+                    Apenas agendamento • Abrimos amanhã às 07h00
+                  </span>
+                  <div className="information-1">
+                    <i className="bi bi-geo-alt-fill"></i>
+                    <span>Itu, SP</span>
+                  </div>
                 </div>
               </div>
+            </div>
+            <div className="div-category-search">
+              <div className="dropdown">
+                <button
+                  className="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Países
+                </button>
+                <ul className="dropdown-menu">
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Japão
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      China
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Índia
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Tailândia
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Coreia do Sul
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <form className="d-flex" role="search">
+                <input
+                  className="form-control me-2"
+                  type="Pesquisar"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button className="btn btn-outline-success" type="submit">
+                  <i className="bi bi-search"></i>
+                </button>
+              </form>
             </div>
           </main>
           {ScreenSize > 992 && <article className="col-3">ARTICLE</article>}

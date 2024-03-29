@@ -16,7 +16,6 @@ header i {
 
 .nav-link:focus,
 .nav-link:hover {
-  font-size: 1.4rem;
   background-color: white;
   border-radius: 0.5rem;
   color: brown;

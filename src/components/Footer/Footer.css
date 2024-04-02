@@ -1,0 +1,23 @@
+footer {
+  background-color: #a52a2a;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem 0;
+}
+
+footer p {
+  color: #fff;
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+footer i {
+  font-size: 4rem;
+  color: #fff5d1;
+  transition: color 0.3s, font-size 0.3s;
+}
+
+footer i:hover {
+  font-size: 4.4rem;
+}

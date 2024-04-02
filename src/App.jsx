@@ -6,6 +6,7 @@ import "./App.css";
 
 // Components
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import Featured_products from "./components/Featured_products/Featured_products";
 import List_of_products from "./components/List_of_products/List_of_products";
 
@@ -146,6 +147,7 @@ function App() {
           {ScreenSize > 992 && <article className="col-3">ARTICLE</article>}
         </div>
       </div>
+      <Footer />
     </>
   );
 }

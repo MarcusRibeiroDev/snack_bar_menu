@@ -6,11 +6,25 @@ import "./App.css";
 
 // Components
 import Navbar from "./components/Navbar/Navbar";
+import Featured_products from "./components/Featured_products/Featured_products";
 
 // Images
 import Logo from "./assets/images/Logo.png";
 
 function App() {
+  const cards = [
+    [
+      { title: "Card 1", text: "Texto do Card 1" },
+      { title: "Card 2", text: "Texto do Card 2" },
+      { title: "Card 3", text: "Texto do Card 3" },
+    ],
+    [
+      { title: "Card 4", text: "Texto do Card 4" },
+      { title: "Card 5", text: "Texto do Card 5" },
+      { title: "Card 6", text: "Texto do Card 6" },
+    ],
+  ];
+
   const [ScreenSize, setScreenSize] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -101,6 +115,7 @@ function App() {
                 </button>
               </form>
             </div>
+            <Featured_products cards={cards} />
           </main>
           {ScreenSize > 992 && <article className="col-3">ARTICLE</article>}
         </div>

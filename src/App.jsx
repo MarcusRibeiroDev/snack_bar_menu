@@ -7,6 +7,7 @@ import "./App.css";
 // Components
 import Navbar from "./components/Navbar/Navbar";
 import Featured_products from "./components/Featured_products/Featured_products";
+import List_of_products from "./components/List_of_products/List_of_products";
 
 // Images
 import Logo from "./assets/images/Logo.png";
@@ -23,6 +24,30 @@ function App() {
       { title: "Card 5", text: "Texto do Card 5" },
       { title: "Card 6", text: "Texto do Card 6" },
     ],
+  ];
+
+  const products = [
+    {
+      category: "SALGADOS FRITOS O CENTO",
+      id: 2324,
+      listProducts: [
+        { title: "Card 4", text: "Texto do Card 4", id: 3434 },
+        { title: "Card 5", text: "Texto do Card 5", id: 2434 },
+        { title: "Card 6", text: "Texto do Card 6", id: 9893 },
+        { title: "Card 4", text: "Texto do Card 4", id: 3034 },
+        { title: "Card 5", text: "Texto do Card 5", id: 2034 },
+        { title: "Card 6", text: "Texto do Card 6", id: 9093 },
+      ],
+    },
+    {
+      category: "SALGADOS ASSADOS O CENTO",
+      id: 2344,
+      listProducts: [
+        { title: "Card 4", text: "Texto do Card 4", id: 1434 },
+        { title: "Card 5", text: "Texto do Card 5", id: 4434 },
+        { title: "Card 6", text: "Texto do Card 6", id: 5434 },
+      ],
+    },
   ];
 
   const [ScreenSize, setScreenSize] = useState(window.innerWidth);
@@ -116,6 +141,7 @@ function App() {
               </form>
             </div>
             <Featured_products cards={cards} />
+            <List_of_products products={products} />
           </main>
           {ScreenSize > 992 && <article className="col-3">ARTICLE</article>}
         </div>

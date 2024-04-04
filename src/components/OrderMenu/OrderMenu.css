@@ -1,0 +1,64 @@
+.order-container {
+  margin: 5rem 0.5rem;
+  font-size: 1.4rem;
+  background-color: #ccc;
+  padding: 0.6rem;
+  border-radius: 1rem;
+}
+
+.delivery-camp {
+  background-color: gray;
+  padding: 1.2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.delivery-camp i {
+  padding-right: 0.6rem;
+}
+
+.product-camp {
+  background-color: brown;
+}
+
+.product-camp-price {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-camp-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+
+.product-camp-info img {
+  height: 8rem;
+}
+
+.product-camp-info div {
+  display: flex;
+  align-items: flex-end;
+}
+
+.order-details .extra-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-details .total-info {
+  font-weight: 700;
+  margin-top: 2rem;
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.finish-button {
+  background-color: red;
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

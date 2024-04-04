@@ -74,6 +74,11 @@
   justify-content: space-between;
 }
 
+.order-mobile {
+  background-color: aqua;
+  height: 6rem;
+}
+
 @media only screen and (max-width: 426px) {
   .content-image {
     height: 25vh;
@@ -119,5 +124,9 @@
 
   main {
     padding: 0;
+  }
+
+  aside {
+    background-color: aqua;
   }
 }

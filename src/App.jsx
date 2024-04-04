@@ -12,6 +12,7 @@ import List_of_products from "./components/List_of_products/List_of_products";
 
 // Images
 import Logo from "./assets/images/Logo.png";
+import OrderMenu from "./components/OrderMenu/OrderMenu";
 
 function App() {
   const cards = [
@@ -144,9 +145,14 @@ function App() {
             <Featured_products cards={cards} />
             <List_of_products products={products} />
           </main>
-          {ScreenSize > 992 && <article className="col-3">ARTICLE</article>}
+          {ScreenSize > 992 && (
+            <aside className="col-3">
+              <OrderMenu />
+            </aside>
+          )}
         </div>
       </div>
+      {ScreenSize < 992 && <div className="order-mobile">Ver Sacola</div>}
       <Footer />
     </>
   );

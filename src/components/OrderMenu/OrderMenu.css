@@ -56,6 +56,17 @@
 }
 
 .finish-button {
+  background-color: rgb(255, 255, 255);
+  color: red;
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.close-button {
   background-color: red;
   padding: 0.6rem;
   display: flex;

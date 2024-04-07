@@ -15,6 +15,8 @@ import Logo from "./assets/images/Logo.png";
 import OrderMenu from "./components/OrderMenu/OrderMenu";
 
 function App() {
+  const [showOrderMobile, setShowOrderMobile] = useState(false);
+
   const cards = [
     [
       { title: "Card 1", text: "Texto do Card 1" },
@@ -65,6 +67,15 @@ function App() {
       window.removeEventListener("resize", handleResize);
     };
   }, [ScreenSize]); // Monitorando o tamanho da tela do usuário
+
+  useEffect(() => {
+    // Adiciona ou remove a classe ao body conforme showOrderMobile
+    if (showOrderMobile) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [showOrderMobile]);
 
   return (
     <>
@@ -152,7 +163,29 @@ function App() {
           )}
         </div>
       </div>
-      {ScreenSize < 992 && <div className="order-mobile">Ver Sacola</div>}
+      {ScreenSize < 992 && (
+        <div
+          className="order-mobile"
+          onClick={() => setShowOrderMobile(!showOrderMobile)}
+        >
+          <div>
+            <i className="bi bi-bag-fill"></i>
+            <span>1</span>
+          </div>
+          <span>Ver sacola</span>
+          <span>R$ 90,00</span>
+        </div>
+      )}
+      {showOrderMobile && (
+        <div className="showOrderMobile">
+          <OrderMenu
+            screenSize={ScreenSize}
+            setShowOrderMobile={setShowOrderMobile}
+            showOrderMobile={showOrderMobile}
+          />
+        </div>
+      )}
+
       <Footer />
     </>
   );

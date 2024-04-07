@@ -1,3 +1,7 @@
+.no-scroll {
+  overflow: hidden;
+}
+
 .container-custom {
   display: flex;
   justify-content: center;
@@ -75,8 +79,30 @@
 }
 
 .order-mobile {
-  background-color: aqua;
-  height: 6rem;
+  background-color: #fff9e7;
+  border-bottom: solid 1.2px #ccc;
+  border-top: solid 1.2px #ccc;
+  height: 5.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  color: #a52a2a;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.showOrderMobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Ofuscamento semi-transparente */
+  z-index: 999; /* Certifique-se de que a div está acima de outros elementos */
 }
 
 @media only screen and (max-width: 426px) {

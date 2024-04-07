@@ -1,6 +1,6 @@
 import "./OrderMenu.css";
 
-const OrderMenu = () => {
+const OrderMenu = ({ screenSize, setShowOrderMobile, showOrderMobile }) => {
   return (
     <div className={`order-container`}>
       <div className="delivery-camp">
@@ -11,52 +11,22 @@ const OrderMenu = () => {
         <span>Carrinho</span>
         <button>Limpar</button>
       </div>
-      <div className="product-camp">
-        <div className="product-camp-price">
-          <span className="">5x Bolos</span>
-          <span>80,00</span>
-        </div>
-        <div className="product-camp-info">
-          <div>
-            <button className="">Editar</button>
-            <button>Remover</button>
+      <div className="container-product-camp">
+        <div className="product-camp">
+          <div className="product-camp-price">
+            <span className="">5x Bolos</span>
+            <span>80,00</span>
           </div>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyWqFHHqEeoYTGP7unLMGN0IRvCYu4Iiot9igcEKa6Jg&s"
-            alt=""
-          />
-        </div>
-      </div>
-      <div className="product-camp">
-        <div className="product-camp-price">
-          <span className="">5x Bolos</span>
-          <span>80,00</span>
-        </div>
-        <div className="product-camp-info">
-          <div>
-            <button className="">Editar</button>
-            <button>Remover</button>
+          <div className="product-camp-info">
+            <div>
+              <button className="">Editar</button>
+              <button>Remover</button>
+            </div>
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyWqFHHqEeoYTGP7unLMGN0IRvCYu4Iiot9igcEKa6Jg&s"
+              alt=""
+            />
           </div>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyWqFHHqEeoYTGP7unLMGN0IRvCYu4Iiot9igcEKa6Jg&s"
-            alt=""
-          />
-        </div>
-      </div>
-      <div className="product-camp">
-        <div className="product-camp-price">
-          <span className="">5x Bolos</span>
-          <span>80,00</span>
-        </div>
-        <div className="product-camp-info">
-          <div>
-            <button className="">Editar</button>
-            <button>Remover</button>
-          </div>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyWqFHHqEeoYTGP7unLMGN0IRvCYu4Iiot9igcEKa6Jg&s"
-            alt=""
-          />
         </div>
       </div>
       <div className="order-details">
@@ -75,6 +45,15 @@ const OrderMenu = () => {
         <div type="button" className="finish-button">
           <span>Finalizar pedido</span>
         </div>
+        {screenSize < 992 && (
+          <div
+            type="button"
+            className="close-button"
+            onClick={() => setShowOrderMobile(!showOrderMobile)}
+          >
+            <span>Voltar</span>
+          </div>
+        )}
       </div>
     </div>
   );

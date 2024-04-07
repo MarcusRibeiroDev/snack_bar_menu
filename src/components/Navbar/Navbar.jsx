@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
@@ -6,10 +7,10 @@ function Navbar() {
       <header>
         <div className="container d-flex justify-content-center py-4">
           <nav className="nav">
-            <a className="nav-link" href="#">
+            <Link className="nav-link" to="/">
               <i className="bi bi-house-door-fill"></i>
               Home
-            </a>
+            </Link>
             <a
               href="#"
               type="button"
@@ -20,10 +21,10 @@ function Navbar() {
               <i className="bi bi-cash-coin"></i>
               Promoções
             </a>
-            <a className="nav-link" href="#">
+            <Link className="nav-link" to="/register-login">
               <i className="bi bi-person-fill"></i>
               Entrar/Cadastrar
-            </a>
+            </Link>
           </nav>
         </div>
       </header>

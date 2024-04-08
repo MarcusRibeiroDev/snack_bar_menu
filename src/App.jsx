@@ -1,3 +1,5 @@
+// CONSTRUIR PÁGINA DE LOGIN/REGISTER, COLOCAR AUTHENTICATION DO FIREBASE
+
 // Hooks
 import { useState, useEffect } from "react";
 import { Route, BrowserRouter, Routes } from "react-router-dom";

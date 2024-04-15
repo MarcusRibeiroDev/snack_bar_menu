@@ -1,4 +1,4 @@
-// CONSTRUIR PÁGINA DE LOGIN/REGISTER, COLOCAR AUTHENTICATION DO FIREBASE
+// COLOCAR AUTHENTICATION DO FIREBASE
 
 // Hooks
 import { useState, useEffect } from "react";
@@ -13,7 +13,9 @@ import Footer from "./components/Footer/Footer";
 
 // Pages
 import Home from "./pages/Home/Home";
-import RegisterLogin from "./pages/Register-Login/Register-Login";
+import Register from "./pages/Register/Register";
+import Login from "./pages/Login/Login";
+import Orders from "./pages/Orders/Orders";
 
 function App() {
   const [ScreenSize, setScreenSize] = useState(window.innerWidth);
@@ -37,7 +39,9 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home ScreenSize={ScreenSize} />} />
-            <Route path="/register-login" element={<RegisterLogin />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
           <Footer />
         </BrowserRouter>

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import "./Navbar.css";
 
 function Navbar() {
@@ -21,9 +22,17 @@ function Navbar() {
               <i className="bi bi-cash-coin"></i>
               Promoções
             </a>
-            <Link className="nav-link" to="/register-login">
+            <Link className="nav-link" to="/orders">
+              <i className="bi bi-bag-fill"></i>
+              Pedidos
+            </Link>
+            <Link className="nav-link" to="/register">
               <i className="bi bi-person-fill"></i>
-              Entrar/Cadastrar
+              Cadastrar
+            </Link>
+            <Link className="nav-link" to="/login">
+              <i className="bi bi-person-fill"></i>
+              Entrar
             </Link>
           </nav>
         </div>

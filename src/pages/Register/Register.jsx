@@ -10,7 +10,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
-  //const { createUser, error: authError, loading } = useAuthentication();
+  const { createUser, error: authError, loading } = useAuthentication();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,33 +28,22 @@ const Register = () => {
       return;
     }
 
-    //const res = await createUser(user);
+    const res = await createUser(user);
 
     console.log(user);
   };
 
-  // useEffect(() => {
-  //   if (authError) {
-  //     setError(authError);
-  //   }
-  // }, [authError]);
+  useEffect(() => {
+    if (authError) {
+      setError(authError);
+    }
+  }, [authError]);
 
   return (
     <div>
       <h1>Cadastre-se para postar</h1>
       <p>Crie seu usuário e compartilhe suas histórias</p>
       <form onSubmit={handleSubmit}>
-        <label>
-          <span>Nome:</span>
-          <input
-            type="text"
-            name="displayName"
-            required
-            placeholder="Nome do usuário"
-            onChange={(e) => setDisplayName(e.target.value)}
-            value={displayName}
-          />
-        </label>
         <label>
           <span>E-mail:</span>
           <input
@@ -65,6 +54,18 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
+        </label>
+        <label>
+          <span>Telefone - Whatsapp:</span>
+          <input
+            type="tel"
+            name="displayName"
+            required
+            placeholder="Digite o DDD seguido do número de telefone"
+            onChange={(e) => setDisplayName(e.target.value)}
+            value={displayName}
+          />
+          <small>Formato: DDD + Número de telefone</small>
         </label>
         <label>
           <span>Senha:</span>
@@ -88,14 +89,13 @@ const Register = () => {
             value={confirmPassword}
           />
         </label>
-        <button className="btn btn-warning ">Cadastrar</button>
-        {/* {!loading && <button className="btn">Entrar</button>}
+        {!loading && <button className="btn btn-info ">Cadastrar</button>}
         {loading && (
           <button className="btn" disabled>
             Aguarde...
           </button>
         )}
-         */}
+
         {error && <p className="error">{error}</p>}
       </form>
     </div>

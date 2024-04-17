@@ -1,4 +1,6 @@
-// COLOCAR AUTHENTICATION DO FIREBASE
+// Context do usuário autenticado e bloquear páginas, depois login e logout
+
+import { db } from "./firebase/config";
 
 // Hooks
 import { useState, useEffect } from "react";

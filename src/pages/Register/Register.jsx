@@ -30,7 +30,7 @@ const Register = () => {
 
     const res = await createUser(user);
 
-    console.log(user);
+    console.log(res);
   };
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const Register = () => {
   }, [authError]);
 
   return (
-    <div>
+    <div className="container-register">
       <h1>Cadastre-se para postar</h1>
       <p>Crie seu usuário e compartilhe suas histórias</p>
       <form onSubmit={handleSubmit}>

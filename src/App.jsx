@@ -1,6 +1,9 @@
 // Context do usuário autenticado e bloquear páginas, depois login e logout
-
+// Firebase
 import { db } from "./firebase/config";
+
+// Context
+import { AuthProvider } from "./context/AuthContext";
 
 // Hooks
 import { useState, useEffect } from "react";
@@ -37,16 +40,18 @@ function App() {
   return (
     <>
       <div>
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home ScreenSize={ScreenSize} />} />
-            <Route path="orders" element={<Orders />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
+        <AuthProvider>
+          <BrowserRouter>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home ScreenSize={ScreenSize} />} />
+              <Route path="orders" element={<Orders />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+            <Footer />
+          </BrowserRouter>
+        </AuthProvider>
       </div>
     </>
   );

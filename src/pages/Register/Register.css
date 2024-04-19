@@ -1,8 +1,9 @@
-.container-register {
-  height: 100vh;
-  width: 100%;
+form {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  gap: 2rem;
+}
+
+form input {
+  display: block;
 }

@@ -60,6 +60,45 @@ export const useAuthentication = () => {
     }
   };
 
+  // Logout
+  const logout = () => {
+    checkIfIsCancelled();
+
+    signOut(auth);
+  };
+
+  // Login
+  const login = async (data) => {
+    checkIfIsCancelled();
+
+    setLoading(true);
+    setError(false);
+
+    try {
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+    } catch (error) {
+      console.log(error.message);
+      console.log(typeof error.message);
+      console.log(error.message.includes("user-not"));
+
+      let systemErrorMessage;
+
+      if (error.message.includes("auth/invalid-credential")) {
+        systemErrorMessage = "Credências incorretas.";
+      } else {
+        systemErrorMessage = "Ocorreu um erro, por favor tenta mais tarde.";
+      }
+
+      console.log(systemErrorMessage);
+
+      setError(systemErrorMessage);
+    }
+
+    console.log(error);
+
+    setLoading(false);
+  };
+
   useEffect(() => {
     return () => setCancelled(true);
   }, []);
@@ -69,5 +108,7 @@ export const useAuthentication = () => {
     createUser,
     error,
     loading,
+    logout,
+    login,
   };
 };

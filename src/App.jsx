@@ -1,4 +1,5 @@
-// Context do usuário autenticado e bloquear páginas, depois login e logout
+// Autenticação funcionando, agora criar lógica para adicionar produtos no carrinho e fazer pedido, salvar em um objeto o pedido, também o bloqueio caso não seja autenticado.
+
 // Firebase
 import { db } from "./firebase/config";
 
@@ -7,7 +8,9 @@ import { AuthProvider } from "./context/AuthContext";
 
 // Hooks
 import { useState, useEffect } from "react";
-import { Route, BrowserRouter, Routes } from "react-router-dom";
+import { Route, BrowserRouter, Routes, Navigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { useAuthentication } from "./hooks/useAuthentication";
 
 // CSS
 import "./App.css";
@@ -25,6 +28,11 @@ import Orders from "./pages/Orders/Orders";
 function App() {
   const [ScreenSize, setScreenSize] = useState(window.innerWidth);
 
+  const [user, setUser] = useState(undefined);
+  const { auth } = useAuthentication();
+
+  const loadingUser = user === undefined;
+
   useEffect(() => {
     const handleResize = () => {
       setScreenSize(window.innerWidth);
@@ -37,17 +45,36 @@ function App() {
     };
   }, [ScreenSize]); // Monitorando o tamanho da tela do usuário
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+  }, [auth]);
+
+  if (loadingUser) {
+    return <p>Carregando...</p>;
+  }
+
   return (
     <>
       <div>
-        <AuthProvider>
+        <AuthProvider value={{ user }}>
           <BrowserRouter>
             <Navbar />
             <Routes>
               <Route path="/" element={<Home ScreenSize={ScreenSize} />} />
-              <Route path="orders" element={<Orders />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
+              <Route
+                path="orders"
+                element={user ? <Orders /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/register"
+                element={!user ? <Register /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/login"
+                element={!user ? <Login /> : <Navigate to="/" />}
+              />
             </Routes>
             <Footer />
           </BrowserRouter>

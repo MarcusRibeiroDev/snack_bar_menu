@@ -30,24 +30,66 @@ function Home({ ScreenSize }) {
 
   const products = [
     {
-      category: "SALGADOS FRITOS O CENTO",
-      id: 2324,
+      category: "Culinária japonesa",
+      id: 1001,
       listProducts: [
-        { title: "Card 4", text: "Texto do Card 4", id: 3434 },
-        { title: "Card 5", text: "Texto do Card 5", id: 2434 },
-        { title: "Card 6", text: "Texto do Card 6", id: 9893 },
-        { title: "Card 4", text: "Texto do Card 4", id: 3034 },
-        { title: "Card 5", text: "Texto do Card 5", id: 2034 },
-        { title: "Card 6", text: "Texto do Card 6", id: 9093 },
+        { title: "Card 4", text: "Texto do Card 4", id: 2001 },
+        { title: "Card 5", text: "Texto do Card 5", id: 2002 },
+        { title: "Card 6", text: "Texto do Card 6", id: 2003 },
+        { title: "Card 7", text: "Texto do Card 7", id: 2004 },
+        { title: "Card 8", text: "Texto do Card 8", id: 2005 },
+        { title: "Card 9", text: "Texto do Card 9", id: 2006 },
       ],
     },
     {
-      category: "SALGADOS ASSADOS O CENTO",
-      id: 2344,
+      category: "Culinária tailandesa",
+      id: 1002,
       listProducts: [
-        { title: "Card 4", text: "Texto do Card 4", id: 1434 },
-        { title: "Card 5", text: "Texto do Card 5", id: 4434 },
-        { title: "Card 6", text: "Texto do Card 6", id: 5434 },
+        { title: "Card 4", text: "Texto do Card 4", id: 2007 },
+        { title: "Card 5", text: "Texto do Card 5", id: 2008 },
+        { title: "Card 6", text: "Texto do Card 6", id: 2009 },
+      ],
+    },
+    {
+      category: "Culinária Indiana",
+      id: 1003,
+      listProducts: [
+        { title: "Card 4", text: "Texto do Card 4", id: 2010 },
+        { title: "Card 5", text: "Texto do Card 5", id: 2011 },
+        { title: "Card 6", text: "Texto do Card 6", id: 2012 },
+        { title: "Card 7", text: "Texto do Card 7", id: 2013 },
+        { title: "Card 8", text: "Texto do Card 8", id: 2014 },
+        { title: "Card 9", text: "Texto do Card 9", id: 2015 },
+      ],
+    },
+    {
+      category: "Culinária vietnamita",
+      id: 1004,
+      listProducts: [
+        { title: "Card 4", text: "Texto do Card 4", id: 2016 },
+        { title: "Card 5", text: "Texto do Card 5", id: 2017 },
+        { title: "Card 6", text: "Texto do Card 6", id: 2018 },
+      ],
+    },
+    {
+      category: "Culinária chinesa",
+      id: 1005,
+      listProducts: [
+        { title: "Card 4", text: "Texto do Card 4", id: 2019 },
+        { title: "Card 5", text: "Texto do Card 5", id: 2020 },
+        { title: "Card 6", text: "Texto do Card 6", id: 2021 },
+        { title: "Card 7", text: "Texto do Card 7", id: 2022 },
+        { title: "Card 8", text: "Texto do Card 8", id: 2023 },
+        { title: "Card 9", text: "Texto do Card 9", id: 2024 },
+      ],
+    },
+    {
+      category: "Culinária sul-coreana",
+      id: 1006,
+      listProducts: [
+        { title: "Card 4", text: "Texto do Card 4", id: 2025 },
+        { title: "Card 5", text: "Texto do Card 5", id: 2026 },
+        { title: "Card 6", text: "Texto do Card 6", id: 2027 },
       ],
     },
   ];
@@ -86,6 +128,8 @@ function Home({ ScreenSize }) {
                 </div>
               </div>
             </div>
+
+            <Featured_products cards={cards} />
             <div className="div-category-search">
               <div className="dropdown">
                 <button
@@ -136,7 +180,6 @@ function Home({ ScreenSize }) {
                 </button>
               </form>
             </div>
-            <Featured_products cards={cards} />
             <List_of_products products={products} />
           </main>
           {ScreenSize > 992 && (

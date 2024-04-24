@@ -1,4 +1,4 @@
-// Autenticação funcionando, agora criar lógica para adicionar produtos no carrinho e fazer pedido, salvar em um objeto o pedido, também o bloqueio caso não seja autenticado.
+// Arrumar o card dos ordens com todas informaçes e adicionar o campo de text, adicionar o redirect pra page de cadastro caso o usuario esteja tentando fechar pedido sem estar autenticado.
 
 // Firebase
 import { db } from "./firebase/config";

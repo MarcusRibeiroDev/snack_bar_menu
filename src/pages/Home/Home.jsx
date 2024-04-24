@@ -11,9 +11,12 @@ import OrderMenu from "../../components/OrderMenu/OrderMenu";
 
 // Images
 import Logo from "../../assets/images/Logo.png";
+import sushi from "../../assets/productsImages/sushi.jpg";
 
 function Home({ ScreenSize }) {
   const [showOrderMobile, setShowOrderMobile] = useState(false);
+
+  const [orderCart, setOrderCart] = useState([]);
 
   const cards = [
     [
@@ -34,7 +37,13 @@ function Home({ ScreenSize }) {
       id: 1001,
       listProducts: [
         { title: "Card 4", text: "Texto do Card 4", id: 2001 },
-        { title: "Card 5", text: "Texto do Card 5", id: 2002 },
+        {
+          title: "Sushi",
+          text: "Texto do Card 5",
+          id: 2002,
+          price: 18.99,
+          img: sushi,
+        },
         { title: "Card 6", text: "Texto do Card 6", id: 2003 },
         { title: "Card 7", text: "Texto do Card 7", id: 2004 },
         { title: "Card 8", text: "Texto do Card 8", id: 2005 },
@@ -180,11 +189,15 @@ function Home({ ScreenSize }) {
                 </button>
               </form>
             </div>
-            <List_of_products products={products} />
+            <List_of_products
+              products={products}
+              orderCart={orderCart}
+              setOrderCart={setOrderCart}
+            />
           </main>
           {ScreenSize > 992 && (
             <aside className="col-3">
-              <OrderMenu />
+              <OrderMenu orderCart={orderCart} />
             </aside>
           )}
         </div>
@@ -208,6 +221,7 @@ function Home({ ScreenSize }) {
             screenSize={ScreenSize}
             setShowOrderMobile={setShowOrderMobile}
             showOrderMobile={showOrderMobile}
+            orderCart={orderCart}
           />
         </div>
       )}

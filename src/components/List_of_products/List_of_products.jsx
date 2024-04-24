@@ -1,7 +1,15 @@
-// CSS
-import "./List_of_products.css";
+import { useState, useEffect } from "react";
 
-const List_of_products = ({ products }) => {
+const List_of_products = ({ products, orderCart, setOrderCart }) => {
+  function addToCart(item) {
+    // Verifica se o item já está no carrinho
+    const isItemInCart = orderCart.some((cartItem) => cartItem.id === item.id);
+    if (!isItemInCart) {
+      // Adiciona o item ao carrinho
+      setOrderCart((prevCart) => [...prevCart, item]);
+    }
+  }
+
   return (
     <>
       {products.map((product) => (
@@ -13,9 +21,17 @@ const List_of_products = ({ products }) => {
                 <div className="card-body">
                   <h5 className="card-title">{item.title}</h5>
                   <p className="card-text">{item.text}</p>
-                  <a href="#" className="btn btn-primary">
-                    Go somewhere
-                  </a>
+                  <button
+                    type="button"
+                    onClick={() => addToCart(item)} // Passa o item para addToCart
+                    className={`btn btn-primary ${
+                      orderCart.some((cartItem) => cartItem.id === item.id)
+                        ? "disabled"
+                        : ""
+                    }`}
+                  >
+                    Adicionar ao Carrinho
+                  </button>
                 </div>
               </div>
             </div>

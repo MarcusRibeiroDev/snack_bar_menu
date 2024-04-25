@@ -7,7 +7,15 @@ const OrderMenu = ({
   setShowOrderMobile,
   showOrderMobile,
   orderCart,
+  orderPriceTotal,
+  setOrderCart,
 }) => {
+  const [shippingCost, setShippingCost] = useState(0);
+
+  function clearCart() {
+    setOrderCart([]);
+  }
+
   return (
     <div className={`order-container`}>
       <div className="delivery-camp">
@@ -16,7 +24,7 @@ const OrderMenu = ({
       </div>
       <div className="d-flex justify-content-between my-4 bg-info align-items-center ">
         <span>Carrinho</span>
-        <button>Limpar</button>
+        <button onClick={() => clearCart()}>Limpar</button>
       </div>
       {orderCart && (
         <>
@@ -27,6 +35,7 @@ const OrderMenu = ({
                   <span className="">5x {order.title}</span>
                   <span>{order.price}</span>
                 </div>
+                <p>{order.text}</p>
                 <div className="product-camp-info">
                   <div>
                     <button className="">Editar</button>
@@ -40,15 +49,15 @@ const OrderMenu = ({
           <div className="order-details">
             <div className="extra-info">
               <span>Subtotal</span>
-              <span>80,00</span>
+              <span>{orderPriceTotal}</span>
             </div>
             <div className="extra-info">
               <span>Entrega</span>
-              <span>80,00</span>
+              <span>{shippingCost}</span>
             </div>
             <div className="total-info">
               <span className="">Total</span>
-              <span>80,00</span>
+              <span>{parseFloat(orderPriceTotal + shippingCost)}</span>
             </div>
             <div type="button" className="finish-button">
               <span>Finalizar pedido</span>

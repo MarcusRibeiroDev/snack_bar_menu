@@ -1,4 +1,4 @@
-// Arrumar o card dos ordens com todas informaçes e adicionar o campo de text, adicionar o redirect pra page de cadastro caso o usuario esteja tentando fechar pedido sem estar autenticado.
+// Colocar funcionalidade de "remover" elemento único, adicionar contagem de qtd de pedido e a trava para redirect no pedido na página de cadastro
 
 // Firebase
 import { db } from "./firebase/config";

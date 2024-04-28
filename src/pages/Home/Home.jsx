@@ -44,7 +44,12 @@ function Home({ ScreenSize }) {
           price: 29.99,
           img: sushi,
         },
-        { title: "Sushi", text: "Texto do Card 5", id: 2002, price: 18 },
+        {
+          title: "Sushi",
+          text: "Texto do Card 5",
+          id: 2002,
+          price: 18,
+        },
         { title: "Card 6", text: "Texto do Card 6", id: 2003, price: 45.5 },
         { title: "Card 7", text: "Texto do Card 7", id: 2004, price: 33 },
         { title: "Card 8", text: "Texto do Card 8", id: 2005, price: 64.99 },
@@ -205,42 +210,34 @@ function Home({ ScreenSize }) {
               setOrderCart={setOrderCart}
             />
           </main>
-          {ScreenSize > 992 && (
-            <aside className="col-3">
-              <OrderMenu
-                orderCart={orderCart}
-                orderPriceTotal={orderPriceTotal}
-                setOrderCart={setOrderCart}
-              />
-            </aside>
-          )}
+          <div
+            className={`${ScreenSize > 992 ? "col-3" : ""}${
+              showOrderMobile ? "showOrderMobile" : "d-none"
+            }`}
+          >
+            <OrderMenu
+              screenSize={ScreenSize}
+              setShowOrderMobile={setShowOrderMobile}
+              showOrderMobile={showOrderMobile}
+              orderCart={orderCart}
+              orderPriceTotal={orderPriceTotal}
+              setOrderCart={setOrderCart}
+              setOrderPriceTotal={setOrderPriceTotal}
+            />
+          </div>
         </div>
       </div>
-      {ScreenSize < 992 && (
-        <div
-          className="order-mobile"
-          onClick={() => setShowOrderMobile(!showOrderMobile)}
-        >
-          <div>
-            <i className="bi bi-bag-fill"></i>
-            <span>{orderCart.length}</span>
-          </div>
-          <span>Ver sacola</span>
-          <span>{orderPriceTotal}</span>
+      <div
+        className={`${ScreenSize < 992 ? "order-mobile" : "d-none"}`}
+        onClick={() => setShowOrderMobile(!showOrderMobile)}
+      >
+        <div>
+          <i className="bi bi-bag-fill"></i>
+          <span>{orderCart.length}</span>
         </div>
-      )}
-      {showOrderMobile && (
-        <div className="showOrderMobile">
-          <OrderMenu
-            screenSize={ScreenSize}
-            setShowOrderMobile={setShowOrderMobile}
-            showOrderMobile={showOrderMobile}
-            orderCart={orderCart}
-            orderPriceTotal={orderPriceTotal}
-            setOrderCart={setOrderCart}
-          />
-        </div>
-      )}
+        <span>Ver sacola</span>
+        <span>{orderPriceTotal}</span>
+      </div>
     </>
   );
 }

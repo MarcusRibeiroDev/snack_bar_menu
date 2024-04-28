@@ -9,12 +9,70 @@ const OrderMenu = ({
   orderCart,
   orderPriceTotal,
   setOrderCart,
+  setOrderPriceTotal,
 }) => {
   const [shippingCost, setShippingCost] = useState(0);
+  const [itemQuantities, setItemQuantities] = useState({});
 
   function clearCart() {
     setOrderCart([]);
+    setItemQuantities({});
   }
+
+  function removeOrder(removedId) {
+    const updatedOrderCart = orderCart.filter(
+      (order) => order.id !== removedId
+    );
+    setOrderCart(updatedOrderCart);
+  }
+
+  const updateQuantity = (id, newQuantity) => {
+    setItemQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [id]: newQuantity,
+    }));
+  };
+
+  useEffect(() => {
+    // Atualize o subtotal sempre que houver uma modificação no carrinho
+    if (orderCart.length > 0) {
+      let totalPrice = orderCart.reduce(
+        (acc, order) => acc + order.price * itemQuantities[order.id],
+        0
+      );
+      setOrderPriceTotal(totalPrice.toFixed(2));
+    } else {
+      setOrderPriceTotal(0);
+    }
+  }, [orderCart, itemQuantities]);
+
+  useEffect(() => {
+    const quantities = {};
+    orderCart.forEach((order) => {
+      quantities[order.id] = itemQuantities[order.id] || 1;
+    });
+    setItemQuantities(quantities);
+  }, [orderCart]);
+
+  useEffect(() => {
+    const updatedCart = orderCart.filter(
+      (order) => itemQuantities[order.id] <= 0
+    );
+
+    if (updatedCart.length > 0) {
+      removeOrder(updatedCart[0].id);
+    }
+    // Atualize o subtotal sempre que houver uma modificação no carrinho
+    if (orderCart.length > 0) {
+      let totalPrice = orderCart.reduce(
+        (acc, order) => acc + order.price * itemQuantities[order.id],
+        0
+      );
+      setOrderPriceTotal(totalPrice.toFixed(2));
+    } else {
+      setOrderPriceTotal(0);
+    }
+  }, [itemQuantities, orderCart, setOrderPriceTotal]);
 
   return (
     <div className={`order-container`}>
@@ -32,14 +90,34 @@ const OrderMenu = ({
             <div className="container-product-camp" key={order.id}>
               <div className="product-camp">
                 <div className="product-camp-price">
-                  <span className="">5x {order.title}</span>
-                  <span>{order.price}</span>
+                  <span className="">{order.title}</span>
+                  <span>{order.price * itemQuantities[order.id]}</span>
                 </div>
                 <p>{order.text}</p>
                 <div className="product-camp-info">
                   <div>
-                    <button className="">Editar</button>
-                    <button>Remover</button>
+                    <div>
+                      {itemQuantities[order.id] > 0
+                        ? itemQuantities[order.id]
+                        : 0}{" "}
+                      unid
+                    </div>{" "}
+                    {/* Mostra a quantidade do item */}
+                    <button
+                      onClick={() =>
+                        updateQuantity(order.id, itemQuantities[order.id] + 1)
+                      }
+                    >
+                      + {/* Adiciona 1 à quantidade */}
+                    </button>
+                    <button
+                      onClick={() =>
+                        updateQuantity(order.id, itemQuantities[order.id] - 1)
+                      }
+                      disabled={itemQuantities[order.id] === 0}
+                    >
+                      -
+                    </button>
                   </div>
                   <img src={order.img} alt="" />
                 </div>

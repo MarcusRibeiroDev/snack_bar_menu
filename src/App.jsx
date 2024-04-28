@@ -1,4 +1,4 @@
-// Colocar funcionalidade de "remover" elemento único, adicionar contagem de qtd de pedido e a trava para redirect no pedido na página de cadastro
+// trava para redirect no pedido na página de cadastro, e começar a fazer o envio do pedido pro whatsapp dps o registro no db do firebase de cada pedido
 
 // Firebase
 import { db } from "./firebase/config";

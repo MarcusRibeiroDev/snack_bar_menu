@@ -1,4 +1,4 @@
-// trava para redirect no pedido na página de cadastro, e começar a fazer o envio do pedido pro whatsapp dps o registro no db do firebase de cada pedido
+// Começar a fazer o envio do pedido pro whatsapp dps o registro no db do firebase de cada pedido
 
 // Firebase
 import { db } from "./firebase/config";

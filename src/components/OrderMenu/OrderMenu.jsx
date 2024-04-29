@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import { useAuthValue } from "../../context/AuthContext";
+
 import "./OrderMenu.css";
 
 const OrderMenu = ({
@@ -11,6 +13,7 @@ const OrderMenu = ({
   setOrderCart,
   setOrderPriceTotal,
 }) => {
+  const { user } = useAuthValue();
   const [shippingCost, setShippingCost] = useState(0);
   const [itemQuantities, setItemQuantities] = useState({});
 
@@ -32,6 +35,14 @@ const OrderMenu = ({
       [id]: newQuantity,
     }));
   };
+
+  function verifyAuth() {
+    if (!user) {
+      alert("Não ta logado");
+    } else {
+      console.log("Pedido feito");
+    }
+  }
 
   useEffect(() => {
     // Atualize o subtotal sempre que houver uma modificação no carrinho
@@ -137,7 +148,13 @@ const OrderMenu = ({
               <span className="">Total</span>
               <span>{parseFloat(orderPriceTotal + shippingCost)}</span>
             </div>
-            <div type="button" className="finish-button">
+            <div
+              type="button"
+              className={`finish-button ${
+                orderCart.length === 0 ? "disabled" : ""
+              }`}
+              onClick={() => verifyAuth()}
+            >
               <span>Finalizar pedido</span>
             </div>
             {screenSize < 992 && (

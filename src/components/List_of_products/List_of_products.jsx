@@ -1,5 +1,4 @@
 import "./List_of_products.css";
-
 import { useState, useEffect } from "react";
 
 const List_of_products = ({ products, orderCart, setOrderCart }) => {
@@ -16,7 +15,7 @@ const List_of_products = ({ products, orderCart, setOrderCart }) => {
     <>
       {products.map((product) => (
         <div className="row col-12 my-4 " key={product.id}>
-          <h2>{product.category.toUpperCase()}</h2>
+          {product.category && <h2>{product.category.toUpperCase()}</h2>}
           {product.listProducts.map((item) => (
             <div className="col-sm-6 mb-3" key={item.id}>
               <div className="card">

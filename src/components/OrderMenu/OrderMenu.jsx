@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { useCreateOrder } from "../../hooks/useCreateOrder";
 import { useAuthValue } from "../../context/AuthContext";
 
 import "./OrderMenu.css";
@@ -14,8 +14,10 @@ const OrderMenu = ({
   setOrderPriceTotal,
 }) => {
   const { user } = useAuthValue();
+  const { saveOrder, error, loading } = useCreateOrder();
   const [shippingCost, setShippingCost] = useState(0);
   const [itemQuantities, setItemQuantities] = useState({});
+  const [newOrder, setNewOrder] = useState(undefined);
 
   function clearCart() {
     setOrderCart([]);
@@ -39,10 +41,26 @@ const OrderMenu = ({
   function verifyAuth() {
     if (!user) {
       alert("Não ta logado");
+      return;
+    } else if (error !== null) {
+      alert("Não foi possível finalizar o pedido, Contate-nos no WhatsApp!");
+      return;
     } else {
-      console.log("Pedido feito");
+      finishOrder();
     }
   }
+
+  const finishOrder = () => {
+    // Criar um objeto com as informações do pedido
+    const order = {
+      orderCart: orderCart,
+      orderPriceTotal: orderPriceTotal,
+      // Outras informações do pedido, se necessário
+    };
+
+    // Armazenar o objeto do pedido no estado
+    setNewOrder(order);
+  };
 
   useEffect(() => {
     // Atualize o subtotal sempre que houver uma modificação no carrinho
@@ -84,6 +102,16 @@ const OrderMenu = ({
       setOrderPriceTotal(0);
     }
   }, [itemQuantities, orderCart, setOrderPriceTotal]);
+
+  useEffect(() => {
+    const saveNewOrder = async () => {
+      if (newOrder !== undefined) {
+        await saveOrder(newOrder);
+      }
+    };
+
+    saveNewOrder();
+  }, [newOrder]);
 
   return (
     <div className={`order-container`}>
@@ -146,17 +174,29 @@ const OrderMenu = ({
             </div>
             <div className="total-info">
               <span className="">Total</span>
-              <span>{parseFloat(orderPriceTotal + shippingCost)}</span>
+              <span>
+                {!isNaN(parseFloat(orderPriceTotal)) &&
+                !isNaN(parseFloat(shippingCost))
+                  ? parseFloat(orderPriceTotal) + parseFloat(shippingCost)
+                  : "NaN"}
+              </span>
             </div>
-            <div
-              type="button"
-              className={`finish-button ${
-                orderCart.length === 0 ? "disabled" : ""
-              }`}
-              onClick={() => verifyAuth()}
-            >
-              <span>Finalizar pedido</span>
-            </div>
+            {!loading && (
+              <div
+                type="button"
+                className={`finish-button ${
+                  orderCart.length === 0 ? "disabled" : ""
+                }`}
+                onClick={() => verifyAuth()}
+              >
+                <span>Finalizar pedido</span>
+              </div>
+            )}
+            {loading && (
+              <div className="finish-button" disabled>
+                Aguarde...
+              </div>
+            )}
             {screenSize < 992 && (
               <div
                 type="button"

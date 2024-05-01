@@ -1,4 +1,4 @@
-// Começar a fazer o envio do pedido pro whatsapp dps o registro no db do firebase de cada pedido
+// Começar a fazer o envio do pedido pro whatsapp, salvar a data e hora de quando pedido foi feito, criar a página de pedidos e recuperar os dados do firestore
 
 // Firebase
 import { db } from "./firebase/config";

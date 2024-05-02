@@ -15,7 +15,6 @@ const OrderMenu = ({
 }) => {
   const { user } = useAuthValue();
   const { saveOrder, error, loading } = useCreateOrder();
-  const [shippingCost, setShippingCost] = useState(0);
   const [itemQuantities, setItemQuantities] = useState({});
   const [newOrder, setNewOrder] = useState(undefined);
 
@@ -55,7 +54,7 @@ const OrderMenu = ({
     const order = {
       orderCart: orderCart,
       orderPriceTotal: orderPriceTotal,
-      // Outras informações do pedido, se necessário
+      timeStamp: new Date(),
     };
 
     // Armazenar o objeto do pedido no estado
@@ -115,10 +114,6 @@ const OrderMenu = ({
 
   return (
     <div className={`order-container`}>
-      <div className="delivery-camp">
-        <i className="bi bi-geo-alt"></i>
-        <span>Calcular taxa e tempo de entrega</span>
-      </div>
       <div className="d-flex justify-content-between my-4 bg-info align-items-center ">
         <span>Carrinho</span>
         <button onClick={() => clearCart()}>Limpar</button>
@@ -164,22 +159,9 @@ const OrderMenu = ({
             </div>
           ))}
           <div className="order-details">
-            <div className="extra-info">
-              <span>Subtotal</span>
-              <span>{orderPriceTotal}</span>
-            </div>
-            <div className="extra-info">
-              <span>Entrega</span>
-              <span>{shippingCost}</span>
-            </div>
             <div className="total-info">
               <span className="">Total</span>
-              <span>
-                {!isNaN(parseFloat(orderPriceTotal)) &&
-                !isNaN(parseFloat(shippingCost))
-                  ? parseFloat(orderPriceTotal) + parseFloat(shippingCost)
-                  : "NaN"}
-              </span>
+              <span>{orderPriceTotal}</span>
             </div>
             {!loading && (
               <div

@@ -1,5 +1,6 @@
 // Hooks
 import { useState, useEffect } from "react";
+//import { useFetchOrders } from "../../hooks/useFetchOrders";
 
 // CSS
 import "./Home.css";
@@ -13,11 +14,17 @@ import OrderMenu from "../../components/OrderMenu/OrderMenu";
 import Logo from "../../assets/images/Logo.png";
 import sushi from "../../assets/productsImages/sushi.jpg";
 
+// Context
+import { useAuthValue } from "../../context/AuthContext";
+
 function Home({ ScreenSize }) {
+  //const { user } = useAuthValue();
   const [showOrderMobile, setShowOrderMobile] = useState(false);
 
   const [orderCart, setOrderCart] = useState([]);
   const [orderPriceTotal, setOrderPriceTotal] = useState(0);
+
+  //const { orders, setOrders, fetchOrders } = useFetchOrders(); // Corrigido para desestruturar orders e fetchOrders corretamente
 
   const cards = [
     [
@@ -126,6 +133,22 @@ function Home({ ScreenSize }) {
       setOrderPriceTotal(0);
     }
   }, [orderCart]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (user) {
+  //       await fetchOrders();
+  //     } else {
+  //       setOrders([]);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [user]);
+
+  // useEffect(() => {
+  //   console.log(orders);
+  // }, [orders]);
 
   return (
     <>

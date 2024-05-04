@@ -1,37 +1,72 @@
 import "./Orders.css";
 
+// Hooks
+import { useEffect } from "react";
+import { useFetchOrders } from "../../hooks/useFetchOrders";
+
+// Context
+import { useAuthValue } from "../../context/AuthContext";
+
 const Orders = () => {
+  const { user } = useAuthValue();
+  const { orders, setOrders, fetchOrders } = useFetchOrders(); // Corrigido para desestruturar orders e fetchOrders corretamente
+
+  const loadingOrder = user === undefined;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (user) {
+        await fetchOrders();
+      } else {
+        setOrders([]);
+      }
+    };
+
+    fetchData();
+  }, [user]);
+
+  useEffect(() => {
+    console.log(orders);
+  }, [orders]);
+
+  if (loadingOrder) {
+    return <p>Carregando...</p>;
+  }
+
   return (
     <div className="order-container">
       <div className="orders-user">
-        <div>
-          <span className="d-inline-flex gap-1">
-            <a
-              className="btn btn-primary"
-              data-bs-toggle="collapse"
-              href="#multiCollapseExample1"
-              role="button"
-              aria-expanded="false"
-              aria-controls="multiCollapseExample1"
-            >
-              Pedido feito no dia...
-            </a>
-          </span>
-          <div className="row">
-            <div className="col">
-              <div
-                className="collapse multi-collapse"
-                id="multiCollapseExample1"
+        {orders.map((order) => (
+          <div key={order.id}>
+            <span className="d-inline-flex gap-1">
+              <button
+                className="btn btn-primary"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target={`#orderCollapse${order.id}`}
+                aria-expanded="false"
+                aria-controls={`orderCollapse${order.id}`}
               >
-                <div className="card card-body">
-                  Some placeholder content for the first collapse component of
-                  this multi-collapse example. This panel is hidden by default
-                  but revealed when the user activates the relevant trigger.
+                {order.id}
+              </button>
+            </span>
+            <div className="row">
+              <div className="col">
+                <div
+                  className="collapse multi-collapse"
+                  id={`orderCollapse${order.id}`}
+                >
+                  <div className="card card-body">
+                    {/* Aqui você pode renderizar os detalhes do pedido, substitua este conteúdo pelo que deseja exibir */}
+                    <p>Detalhes do pedido:</p>
+                    <p>ID do Pedido: {order.id}</p>
+                    {/* Renderize outros detalhes do pedido aqui */}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );

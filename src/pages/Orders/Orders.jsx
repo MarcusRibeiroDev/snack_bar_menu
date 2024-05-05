@@ -47,7 +47,7 @@ const Orders = () => {
                 aria-expanded="false"
                 aria-controls={`orderCollapse${order.id}`}
               >
-                {order.id}
+                Pedido: {order.date}
               </button>
             </span>
             <div className="row">
@@ -58,8 +58,13 @@ const Orders = () => {
                 >
                   <div className="card card-body">
                     {/* Aqui você pode renderizar os detalhes do pedido, substitua este conteúdo pelo que deseja exibir */}
-                    <p>Detalhes do pedido:</p>
-                    <p>ID do Pedido: {order.id}</p>
+                    <p>Hora do Pedido: {order.time}</p>
+                    {order.orderCart.map((prod) => (
+                      <div key={prod.id}>
+                        <p>{prod.title}</p>
+                      </div>
+                    ))}
+                    <p>Valor total: {order.orderPriceTotal}</p>
                     {/* Renderize outros detalhes do pedido aqui */}
                   </div>
                 </div>

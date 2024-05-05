@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useCreateOrder } from "../../hooks/useCreateOrder";
 import { useAuthValue } from "../../context/AuthContext";
+import { useSendMessage } from "../../hooks/useSendMessage";
 
 import "./OrderMenu.css";
 
@@ -17,6 +18,7 @@ const OrderMenu = ({
   const { saveOrder, error, loading } = useCreateOrder();
   const [itemQuantities, setItemQuantities] = useState({});
   const [newOrder, setNewOrder] = useState(undefined);
+  const { sendMessage } = useSendMessage();
 
   function clearCart() {
     setOrderCart([]);
@@ -50,11 +52,23 @@ const OrderMenu = ({
   }
 
   const finishOrder = () => {
-    // Criar um objeto com as informações do pedido
+    // Obtenha a data e hora atuais
+    const currentTime = new Date();
+
+    // Formate a data como 'YYYY-MM-DD'
+    const currentDate = currentTime.toISOString().split("T")[0];
+
+    // Formate a hora como 'HH:MM'
+    const hours = currentTime.getHours().toString().padStart(2, "0");
+    const minutes = currentTime.getMinutes().toString().padStart(2, "0");
+    const currentTimeFormatted = `${hours}:${minutes}`;
+
+    // Criar um objeto com as informações do pedido, incluindo data e hora
     const order = {
       orderCart: orderCart,
       orderPriceTotal: orderPriceTotal,
-      timeStamp: new Date(),
+      date: currentDate,
+      time: currentTimeFormatted,
     };
 
     // Armazenar o objeto do pedido no estado
@@ -109,11 +123,20 @@ const OrderMenu = ({
       }
     };
 
+    const sendNewMessage = async () => {
+      if (newOrder !== undefined) {
+        const data = await sendMessage(user.displayName);
+        console.log(data);
+      }
+    };
+
     saveNewOrder();
+    sendNewMessage();
   }, [newOrder]);
 
   return (
     <div className={`order-container`}>
+      <p>Somente retirada na loja</p>
       <div className="d-flex justify-content-between my-4 bg-info align-items-center ">
         <span>Carrinho</span>
         <button onClick={() => clearCart()}>Limpar</button>

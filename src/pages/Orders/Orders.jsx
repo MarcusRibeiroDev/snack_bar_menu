@@ -9,8 +9,7 @@ import { useAuthValue } from "../../context/AuthContext";
 
 const Orders = () => {
   const { user } = useAuthValue();
-  const { orders, setOrders, fetchOrders } = useFetchOrders(); // Corrigido para desestruturar orders e fetchOrders corretamente
-
+  const { orders, setOrders, fetchOrders } = useFetchOrders();
   const loadingOrder = user === undefined;
 
   useEffect(() => {
@@ -29,6 +28,13 @@ const Orders = () => {
     console.log(orders);
   }, [orders]);
 
+  // Ordenar os pedidos por data e hora, com os mais recentes primeiro
+  const sortedOrders = orders.slice().sort((a, b) => {
+    const dateA = new Date(`${a.date}T${a.time}`);
+    const dateB = new Date(`${b.date}T${b.time}`);
+    return dateB - dateA;
+  });
+
   if (loadingOrder) {
     return <p>Carregando...</p>;
   }
@@ -36,7 +42,7 @@ const Orders = () => {
   return (
     <div className="order-container">
       <div className="orders-user">
-        {orders.map((order) => (
+        {sortedOrders.map((order) => (
           <div key={order.id}>
             <span className="d-inline-flex gap-1">
               <button
@@ -57,15 +63,15 @@ const Orders = () => {
                   id={`orderCollapse${order.id}`}
                 >
                   <div className="card card-body">
-                    {/* Aqui você pode renderizar os detalhes do pedido, substitua este conteúdo pelo que deseja exibir */}
                     <p>Hora do Pedido: {order.time}</p>
                     {order.orderCart.map((prod) => (
                       <div key={prod.id}>
-                        <p>{prod.title}</p>
+                        <p>
+                          {prod.quantity}x {prod.title}
+                        </p>
                       </div>
                     ))}
                     <p>Valor total: {order.orderPriceTotal}</p>
-                    {/* Renderize outros detalhes do pedido aqui */}
                   </div>
                 </div>
               </div>

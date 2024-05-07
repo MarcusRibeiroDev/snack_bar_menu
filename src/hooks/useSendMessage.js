@@ -1,5 +1,5 @@
 export function useSendMessage() {
-  async function sendMessage(number) {
+  async function sendMessage(msg, number) {
     const GZAPPY_URL = "https://api.gzappy.com/v1/message/send-message";
 
     const response = await fetch(GZAPPY_URL, {
@@ -11,7 +11,7 @@ export function useSendMessage() {
       body: JSON.stringify({
         instance_id: "R5CA90UEHJ3WHKR1H719AVF0",
         instance_token: "08d1aea1-86a8-4864-8d08-7b7b2f768dd4",
-        message: "Olá, o envio foi executado com sucesso",
+        message: [msg],
         phone: [`55${number}`],
       }),
     });

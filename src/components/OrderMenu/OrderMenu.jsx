@@ -65,7 +65,10 @@ const OrderMenu = ({
 
     // Criar um objeto com as informações do pedido, incluindo data e hora
     const order = {
-      orderCart: orderCart,
+      orderCart: orderCart.map((order) => ({
+        ...order,
+        quantity: itemQuantities[order.id], // Adicione a quantidade do item ao objeto do pedido
+      })),
       orderPriceTotal: orderPriceTotal,
       date: currentDate,
       time: currentTimeFormatted,
@@ -125,13 +128,31 @@ const OrderMenu = ({
 
     const sendNewMessage = async () => {
       if (newOrder !== undefined) {
-        const data = await sendMessage(user.displayName);
+        // Construir a mensagem personalizada
+        let msg = "#### NOVO PEDIDO ####\n\n";
+        msg += `# IDº pedido: ?\nfeito em ${newOrder.date} ${newOrder.time}\n\n`;
+        msg += `👤 ${user.email}\n`;
+        msg += `📞 ${user.displayName}\n\n`;
+        msg += "📍 Retirar na loja\n\n";
+        msg += "------- ITENS DO PEDIDO -------\n\n";
+        newOrder.orderCart.forEach((order) => {
+          msg += `${itemQuantities[order.id]} x ${order.title}\n`;
+          msg += `💵 ${itemQuantities[order.id]} x R$ ${order.price.toFixed(
+            2
+          )} = R$ ${(order.price * itemQuantities[order.id]).toFixed(2)}\n\n`;
+        });
+        msg += "-------------------------------\n\n";
+        msg += `VALOR FINAL: R$ ${newOrder.orderPriceTotal}\n\n`;
+
+        // Enviar a mensagem via WhatsApp
+        const data = await sendMessage(msg, user.displayName);
         console.log(data);
       }
     };
 
-    saveNewOrder();
     sendNewMessage();
+    saveNewOrder();
+    clearCart();
   }, [newOrder]);
 
   return (

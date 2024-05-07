@@ -1,4 +1,4 @@
-// Começar a fazer o envio do pedido pro whatsapp, criar a página de pedidos e recuperar os dados do firestore
+// Colocar redirect para login caso tente fazer pedido sem cadastro, adicionar as regras nos inputs de cadastro e login e a trava de pedido vazio
 
 // Firebase
 import { db } from "./firebase/config";

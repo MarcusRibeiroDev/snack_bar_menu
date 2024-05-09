@@ -73,3 +73,8 @@
   align-items: center;
   justify-content: center;
 }
+
+.order-details .disabled {
+  background-color: #fff;
+  color: #ccc;
+}

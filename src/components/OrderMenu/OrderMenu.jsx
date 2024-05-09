@@ -19,6 +19,7 @@ const OrderMenu = ({
   const [itemQuantities, setItemQuantities] = useState({});
   const [newOrder, setNewOrder] = useState(undefined);
   const { sendMessage } = useSendMessage();
+  const [showAlert, setShowAlert] = useState(undefined);
 
   function clearCart() {
     setOrderCart([]);
@@ -41,7 +42,7 @@ const OrderMenu = ({
 
   function verifyAuth() {
     if (!user) {
-      alert("Não ta logado");
+      alert("Você não está conectado em nenhuma conta!");
       return;
     } else if (error !== null) {
       alert("Não foi possível finalizar o pedido, Contate-nos no WhatsApp!");
@@ -155,87 +156,99 @@ const OrderMenu = ({
     clearCart();
   }, [newOrder]);
 
+  useEffect(() => {
+    if (user) {
+      setShowAlert(false);
+    } else {
+      setShowAlert(true);
+    }
+  }, [user]);
+
   return (
-    <div className={`order-container`}>
-      <p>Somente retirada na loja</p>
-      <div className="d-flex justify-content-between my-4 bg-info align-items-center ">
-        <span>Carrinho</span>
-        <button onClick={() => clearCart()}>Limpar</button>
-      </div>
-      {orderCart && (
-        <>
-          {orderCart.map((order) => (
-            <div className="container-product-camp" key={order.id}>
-              <div className="product-camp">
-                <div className="product-camp-price">
-                  <span className="">{order.title}</span>
-                  <span>{order.price * itemQuantities[order.id]}</span>
-                </div>
-                <p>{order.text}</p>
-                <div className="product-camp-info">
-                  <div>
-                    <div>
-                      {itemQuantities[order.id] > 0
-                        ? itemQuantities[order.id]
-                        : 0}{" "}
-                      unid
-                    </div>{" "}
-                    {/* Mostra a quantidade do item */}
-                    <button
-                      onClick={() =>
-                        updateQuantity(order.id, itemQuantities[order.id] + 1)
-                      }
-                    >
-                      + {/* Adiciona 1 à quantidade */}
-                    </button>
-                    <button
-                      onClick={() =>
-                        updateQuantity(order.id, itemQuantities[order.id] - 1)
-                      }
-                      disabled={itemQuantities[order.id] === 0}
-                    >
-                      -
-                    </button>
+    <>
+      <div className={`order-container`}>
+        <p>Somente retirada na loja</p>
+        <div className="d-flex justify-content-between my-4 bg-info align-items-center ">
+          <span>Carrinho</span>
+          <button onClick={() => clearCart()}>Limpar</button>
+        </div>
+        {orderCart && (
+          <>
+            {orderCart.map((order) => (
+              <div className="container-product-camp" key={order.id}>
+                <div className="product-camp">
+                  <div className="product-camp-price">
+                    <span className="">{order.title}</span>
+                    <span>{order.price * itemQuantities[order.id]}</span>
                   </div>
-                  <img src={order.img} alt="" />
+                  <p>{order.text}</p>
+                  <div className="product-camp-info">
+                    <div>
+                      <div>
+                        {itemQuantities[order.id] > 0
+                          ? itemQuantities[order.id]
+                          : 0}{" "}
+                        unid
+                      </div>{" "}
+                      {/* Mostra a quantidade do item */}
+                      <button
+                        onClick={() =>
+                          updateQuantity(order.id, itemQuantities[order.id] + 1)
+                        }
+                      >
+                        + {/* Adiciona 1 à quantidade */}
+                      </button>
+                      <button
+                        onClick={() =>
+                          updateQuantity(order.id, itemQuantities[order.id] - 1)
+                        }
+                        disabled={itemQuantities[order.id] === 0}
+                      >
+                        -
+                      </button>
+                    </div>
+                    <img src={order.img} alt="" />
+                  </div>
                 </div>
               </div>
+            ))}
+            <div className="order-details">
+              <div className="total-info">
+                <span className="">Total</span>
+                <span>{orderPriceTotal}</span>
+              </div>
+              {!loading && (
+                <div
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal2"
+                  className={`finish-button ${
+                    orderCart.length === 0 ? "disabled" : ""
+                  }`}
+                  onClick={() => verifyAuth()}
+                >
+                  <span>Finalizar pedido</span>
+                </div>
+              )}
+              {loading && (
+                <div className="finish-button" disabled>
+                  Aguarde...
+                </div>
+              )}
+              {screenSize < 992 && (
+                <div
+                  type="button"
+                  className="close-button"
+                  onClick={() => setShowOrderMobile(!showOrderMobile)}
+                >
+                  <span>Voltar</span>
+                </div>
+              )}
             </div>
-          ))}
-          <div className="order-details">
-            <div className="total-info">
-              <span className="">Total</span>
-              <span>{orderPriceTotal}</span>
-            </div>
-            {!loading && (
-              <div
-                type="button"
-                className={`finish-button ${
-                  orderCart.length === 0 ? "disabled" : ""
-                }`}
-                onClick={() => verifyAuth()}
-              >
-                <span>Finalizar pedido</span>
-              </div>
-            )}
-            {loading && (
-              <div className="finish-button" disabled>
-                Aguarde...
-              </div>
-            )}
-            {screenSize < 992 && (
-              <div
-                type="button"
-                className="close-button"
-                onClick={() => setShowOrderMobile(!showOrderMobile)}
-              >
-                <span>Voltar</span>
-              </div>
-            )}
-          </div>
-        </>
-      )}
-    </div>
+          </>
+        )}
+      </div>
+    </>
   );
 };
 

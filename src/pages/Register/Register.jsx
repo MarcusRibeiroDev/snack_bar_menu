@@ -9,6 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [isValidForm, setIsValidForm] = useState(false); // Estado para verificar se o formulário é válido
 
   const { createUser, error: authError, loading } = useAuthentication();
 
@@ -39,6 +40,37 @@ const Register = () => {
     }
   }, [authError]);
 
+  // Função para validar o formato do email
+  const isValidEmail = (email) => {
+    // Expressão regular para validar email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  // Função para validar o formato do número de telefone
+  const isValidPhoneNumber = (phoneNumber) => {
+    // Expressão regular para validar número de telefone com DDD
+    const phoneRegex = /^\d{2}\d{8,9}$/;
+    return phoneRegex.test(phoneNumber);
+  };
+
+  // Função para validar a senha
+  const isValidPassword = (password) => {
+    // A senha deve ter pelo menos 6 caracteres, incluindo letras e números
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    return passwordRegex.test(password);
+  };
+
+  // Verifica se todos os campos são válidos
+  useEffect(() => {
+    const isFormValid =
+      isValidEmail(email) &&
+      isValidPhoneNumber(displayName) &&
+      isValidPassword(password) &&
+      password === confirmPassword;
+    setIsValidForm(isFormValid);
+  }, [email, displayName, password, confirmPassword]);
+
   return (
     <div className="container-register">
       <h1>Cadastre-se para postar</h1>
@@ -54,6 +86,7 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
+          {!isValidEmail(email) && <small>Formato de e-mail inválido</small>}
         </label>
         <label>
           <span>Telefone - Whatsapp:</span>
@@ -65,7 +98,9 @@ const Register = () => {
             onChange={(e) => setDisplayName(e.target.value)}
             value={displayName}
           />
-          <small>Formato: DDD + Número de telefone</small>
+          {!isValidPhoneNumber(displayName) && (
+            <small>Formato de telefone inválido</small>
+          )}
         </label>
         <label>
           <span>Senha:</span>
@@ -77,6 +112,12 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
+          {!isValidPassword(password) && (
+            <small>
+              A senha deve ter pelo menos 6 caracteres, incluindo letras e
+              números
+            </small>
+          )}
         </label>
         <label>
           <span>Confirmação de senha:</span>
@@ -89,7 +130,12 @@ const Register = () => {
             value={confirmPassword}
           />
         </label>
-        {!loading && <button className="btn btn-info ">Cadastrar</button>}
+        {/* Desabilita o botão de cadastro se o formulário não for válido */}
+        {!loading && (
+          <button className="btn btn-info" disabled={!isValidForm}>
+            Cadastrar
+          </button>
+        )}
         {loading && (
           <button className="btn" disabled>
             Aguarde...

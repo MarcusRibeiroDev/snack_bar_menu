@@ -1,4 +1,4 @@
-// Colocar redirect para login caso tente fazer pedido sem cadastro, adicionar as regras nos inputs de cadastro e login e a trava de pedido vazio
+// CSS
 
 // Firebase
 import { db } from "./firebase/config";

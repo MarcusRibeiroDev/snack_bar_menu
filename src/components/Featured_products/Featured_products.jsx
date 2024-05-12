@@ -64,14 +64,13 @@ const FeaturedProducts = ({ cards }) => {
                     <div key={cardIndex} className="col-4">
                       <div className="card">
                         <img
-                          src="https://www.kideliciasalgados.com.br/wp-content/uploads/2019/11/coxinha_de_peru_kidelicia.png"
+                          src={card.img}
                           className="card-img-top"
                           alt="..."
                         />
                         <div className="card-body">
                           <h5 className="card-title">{card.title}</h5>
-                          <p className="card-text">{card.text}</p>
-                          <span>R$ 4,00</span>
+                          <span>R$ {card.price},00 </span>
                         </div>
                       </div>
                     </div>

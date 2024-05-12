@@ -1,13 +1,37 @@
 const cards = [
   [
-    { title: "Card 1", text: "Texto do Card 1" },
-    { title: "Card 2", text: "Texto do Card 2" },
-    { title: "Card 3", text: "Texto do Card 3" },
+    {
+      title: "Sushi",
+      price: 18,
+      img: "https://www.justonecookbook.com/wp-content/uploads/2020/01/Sushi-Rolls-Maki-Sushi-%E2%80%93-Hosomaki-1106-II.jpg",
+    },
+    {
+      title: "Ramen",
+      price: 22,
+      img: "https://www.modernfarmhouseeats.com/wp-content/uploads/2021/03/chili-lime-shrimp-ramen-2-scaled.jpg",
+    },
+    {
+      title: "Massaman Curry",
+      price: 25,
+      img: "https://www.wellplated.com/wp-content/uploads/2022/08/best-massaman-curry-recipe.jpg",
+    },
   ],
   [
-    { title: "Card 4", text: "Texto do Card 4" },
-    { title: "Card 5", text: "Texto do Card 5" },
-    { title: "Card 6", text: "Texto do Card 6" },
+    {
+      title: "Pho",
+      price: 25,
+      img: "https://www.recipetineats.com/wp-content/uploads/2019/04/Beef-Pho_6.jpg",
+    },
+    {
+      title: "Dim Sum",
+      price: 25,
+      img: "https://vejasp.abril.com.br/wp-content/uploads/2022/04/Y%C2%BFng-Dim-Sum-Bar-001.jpg.jpg?quality=70&strip=info",
+    },
+    {
+      title: "Kimchi",
+      price: 12,
+      img: "https://www.koreanbapsang.com/wp-content/uploads/2019/11/DSC_0831-e1645400234347.jpg",
+    },
   ],
 ];
 

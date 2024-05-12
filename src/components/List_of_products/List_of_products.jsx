@@ -36,12 +36,10 @@ const List_of_products = ({ products, orderCart, setOrderCart }) => {
                       Adicionar ao Carrinho
                     </button>
                   </div>
-                  <div className="col-4">
-                    <img
-                      src={item.img}
-                      className="img-list-of-products"
-                      alt=""
-                    />
+                  <div className="col-4 d-flex justify-content-end align-items-center">
+                    <div className="img-list-of-products">
+                      <img src={item.img} alt="" />
+                    </div>
                   </div>
                 </div>
               </div>

@@ -1,5 +1,3 @@
-// CSS
-
 // Firebase
 import { db } from "./firebase/config";
 

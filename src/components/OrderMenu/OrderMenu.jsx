@@ -181,7 +181,6 @@ const OrderMenu = ({
                     <span className="">{order.title}</span>
                     <span>{order.price * itemQuantities[order.id]}</span>
                   </div>
-                  <p>{order.text}</p>
                   <div className="product-camp-info">
                     <div>
                       <div>

@@ -9,8 +9,9 @@
 
 .button-slide i {
   cursor: pointer;
-  color: black;
-  font-size: 2.8rem;
+  color: gold;
+  font-size: 5.2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adicionando sombra ao texto */
 }
 
 .card-img-top {

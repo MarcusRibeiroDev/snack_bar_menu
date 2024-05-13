@@ -167,7 +167,6 @@ const OrderMenu = ({
   return (
     <>
       <div className={`order-container`}>
-        <p>Somente retirada na loja</p>
         <div className="d-flex justify-content-between my-4 bg-info align-items-center ">
           <span>Carrinho</span>
           <button onClick={() => clearCart()}>Limpar</button>

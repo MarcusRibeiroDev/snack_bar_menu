@@ -8,3 +8,14 @@
   height: 100%;
   object-fit: cover; /* Ajusta a imagem para cobrir todo o espaço, mantendo sua proporção */
 }
+
+.List_of_products .card {
+  height: 16rem;
+}
+
+/* Media query para dispositivos móveis */
+@media screen and (max-width: 768px) {
+  .List_of_products .card {
+    height: 20rem;
+  }
+}

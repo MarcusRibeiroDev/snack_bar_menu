@@ -10,11 +10,11 @@
 .content-image {
   height: 35vh;
   width: 100%;
-  background-image: url("https://www.melhoresdestinos.com.br/wp-content/uploads/2018/11/comida-tailandia-capa2020-01.jpg");
-  background-position: center;
+  background-image: url("../../assets/images/Banner.jpg");
+  background-position: bottom;
   background-size: cover;
   border-radius: 1rem;
-  border: solid 4px white;
+  border: solid 4px goldenrod;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: -4.5rem;
 }

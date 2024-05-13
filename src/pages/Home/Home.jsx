@@ -10,7 +10,7 @@ import List_of_products from "../../components/List_of_products/List_of_products
 import OrderMenu from "../../components/OrderMenu/OrderMenu";
 
 // Images
-import Logo from "../../assets/images/Logo.png";
+import Logo from "../../assets/images/Logo.jpg";
 
 // Context
 import { useAuthValue } from "../../context/AuthContext";
@@ -57,12 +57,10 @@ function Home({ ScreenSize }) {
             <div className="div-information-container">
               <img src={Logo} alt="" />
               <div className="div-information">
-                <span className="div-information-title">
-                  Restaurante Asíatico
-                </span>
+                <span className="div-information-title">Sabor do Oriente</span>
                 <div className="div-information-details">
                   <span className="information-0">
-                    Apenas agendamento • Abrimos amanhã às 07h00
+                    Apenas retirada • Abertos de terça a domingo
                   </span>
                   <div className="information-1">
                     <i className="bi bi-geo-alt-fill"></i>
@@ -72,57 +70,7 @@ function Home({ ScreenSize }) {
               </div>
             </div>
 
-            <Featured_products cards={cards} />
-            <div className="div-category-search">
-              <div className="dropdown">
-                <button
-                  className="btn btn-secondary dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Países
-                </button>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Japão
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      China
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Índia
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Tailândia
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Coreia do Sul
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <form className="d-flex" role="search">
-                <input
-                  className="form-control me-2"
-                  type="Pesquisar"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <button className="btn btn-outline-success" type="submit">
-                  <i className="bi bi-search"></i>
-                </button>
-              </form>
-            </div>
+            {ScreenSize > 992 && <Featured_products cards={cards} />}
             <List_of_products
               products={products}
               orderCart={orderCart}

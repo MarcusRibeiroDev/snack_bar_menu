@@ -13,7 +13,7 @@ const cards = [
     {
       title: "Massaman Curry",
       price: 25,
-      img: "https://www.wellplated.com/wp-content/uploads/2022/08/best-massaman-curry-recipe.jpg",
+      img: "https://minimalistbaker.com/wp-content/uploads/2019/07/EASY-1-Pot-Massaman-Curry-Basic-ingredients-BIG-flavor-lots-of-protein-options-for-vegan-vegetarian-and-meat-eaters-plantbased-glutenfree-curry-massaman-recipe-minimalistbaker-38.jpg",
     },
   ],
   [

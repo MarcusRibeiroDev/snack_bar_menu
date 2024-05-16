@@ -1,9 +1,35 @@
 .order-container {
   margin: 5rem 0.5rem;
-  font-size: 1.4rem;
-  background-color: #ccc;
+  font-size: 1.2rem;
+  background-color: #fffaf2;
   padding: 0.6rem;
-  border-radius: 1rem;
+  border: goldenrod solid 0.2rem;
+  border-radius: 0.6rem;
+  width: 24rem;
+  font-family: "Rubik", sans-serif;
+  max-height: calc(100vh - 10rem); /* Define a altura máxima do contêiner */
+  overflow-y: auto; /* Adiciona scroll vertical apenas quando necessário */
+}
+
+.top-order-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: #ccc dashed 0.2px;
+  padding: 0.6rem 0;
+  font-weight: bold;
+}
+
+.top-order-container button {
+  background-color: #a52a2a; /* Cor de fundo azul */
+  color: #fff; /* Cor do texto branco */
+  border: none; /* Remove a borda padrão */
+  padding: 0.6rem 1.2rem; /* Espaçamento interno */
+  border-radius: 4px; /* Borda arredondada */
+
+  /* Sombreado */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra com deslocamento de 0px na horizontal, 2px na vertical, 4px de desfoque e uma opacidade de 20% */
 }
 
 .delivery-camp {
@@ -18,8 +44,15 @@
   padding-right: 0.6rem;
 }
 
+.container-product-camp {
+  margin: 1rem 0;
+}
+
 .product-camp {
-  background-color: brown;
+  background-color: #fff;
+  border-radius: 0.6rem;
+  padding: 0.5rem;
+  border: goldenrod solid 0.2px;
 }
 
 .product-camp-price {
@@ -30,7 +63,28 @@
 .product-camp-info {
   display: flex;
   justify-content: space-between;
-  margin: 2rem 0;
+  align-items: end;
+  margin-top: 0.6rem;
+}
+
+.product-camp-info-unid {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.product-camp-info-unid .unid {
+  font-size: 1.4rem;
+}
+
+.product-camp-info .plus-button {
+  color: green;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.product-camp-info .less-button {
+  color: red;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .product-camp-info img {
@@ -42,17 +96,25 @@
   align-items: flex-end;
 }
 
+.order-details {
+  border-top: #ccc dashed 0.2px;
+  padding: 1rem 0 0 0;
+  position: sticky;
+  bottom: 0;
+  background-color: #fffaf2;
+}
+
 .order-details .extra-info {
   display: flex;
   justify-content: space-between;
 }
 
 .order-details .total-info {
-  font-weight: 700;
-  margin-top: 2rem;
-  font-size: 1.6rem;
+  font-weight: 600;
+  font-size: 1.4rem;
   display: flex;
   justify-content: space-between;
+  color: rgb(175, 2, 2);
 }
 
 .finish-button {
@@ -64,6 +126,10 @@
   justify-content: center;
   margin-top: 0.4rem;
   margin-bottom: 0.4rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  border: #ccc solid 0.2px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
 }
 
 .close-button {
@@ -72,9 +138,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
 }
 
 .order-details .disabled {
   background-color: #fff;
   color: #ccc;
+}
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.empty-cart i {
+  font-size: 8rem;
+}
+
+.empty-cart span {
+  font-weight: 600;
+  font-size: 1.6rem;
 }

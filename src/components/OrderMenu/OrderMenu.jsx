@@ -167,7 +167,7 @@ const OrderMenu = ({
   return (
     <>
       <div className={`order-container`}>
-        <div className="d-flex justify-content-between my-4 bg-info align-items-center ">
+        <div className="top-order-container">
           <span>Carrinho</span>
           <button onClick={() => clearCart()}>Limpar</button>
         </div>
@@ -177,43 +177,55 @@ const OrderMenu = ({
               <div className="container-product-camp" key={order.id}>
                 <div className="product-camp">
                   <div className="product-camp-price">
-                    <span className="">{order.title}</span>
-                    <span>{order.price * itemQuantities[order.id]}</span>
+                    <span className="h4">{order.title}</span>
+                    <span className="text-danger font-weight-bold">
+                      R$ {order.price * itemQuantities[order.id]},00
+                    </span>
                   </div>
                   <div className="product-camp-info">
-                    <div>
-                      <div>
-                        {itemQuantities[order.id] > 0
-                          ? itemQuantities[order.id]
-                          : 0}{" "}
-                        unid
-                      </div>{" "}
+                    <div className="product-camp-info-unid">
                       {/* Mostra a quantidade do item */}
-                      <button
+                      <div
+                        className="plus-button"
+                        type="button"
                         onClick={() =>
                           updateQuantity(order.id, itemQuantities[order.id] + 1)
                         }
                       >
                         + {/* Adiciona 1 à quantidade */}
-                      </button>
-                      <button
+                      </div>
+                      <div className="unid">
+                        {itemQuantities[order.id] > 0
+                          ? itemQuantities[order.id]
+                          : 0}{" "}
+                        unid
+                      </div>{" "}
+                      <div
+                        type="button"
+                        className="less-button"
                         onClick={() =>
                           updateQuantity(order.id, itemQuantities[order.id] - 1)
                         }
                         disabled={itemQuantities[order.id] === 0}
                       >
                         -
-                      </button>
+                      </div>
                     </div>
                     <img src={order.img} alt="" />
                   </div>
                 </div>
               </div>
             ))}
+            {orderCart.length === 0 && (
+              <div className="empty-cart">
+                <i className="bi bi-bag"></i>
+                <span>Sacola vazia</span>
+              </div>
+            )}
             <div className="order-details">
               <div className="total-info">
                 <span className="">Total</span>
-                <span>{orderPriceTotal}</span>
+                <span>R${orderPriceTotal}</span>
               </div>
               {!loading && (
                 <div

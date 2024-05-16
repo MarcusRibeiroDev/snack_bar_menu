@@ -19,7 +19,7 @@ const List_of_products = ({ products, orderCart, setOrderCart }) => {
           {product.listProducts.map((item) => (
             <div className="col-sm-6 mb-3" key={item.id}>
               <div className="card">
-                <div className="card-body d-flex justify-content-center align-items-center ">
+                <div className="card-body d-flex justify-content-center align-items-center">
                   <div className="col-8 me-1">
                     {" "}
                     <h5 className="card-title">{item.title}</h5>

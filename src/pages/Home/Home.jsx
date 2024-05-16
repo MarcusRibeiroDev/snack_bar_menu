@@ -53,7 +53,7 @@ function Home({ ScreenSize }) {
           <div className="content-image"></div>
         </div>
         <div className="d-flex justify-content-center ">
-          <main className="col-md-9 container d-flex align-items-center flex-column">
+          <main className="col-md-8 container d-flex align-items-center flex-column">
             <div className="div-information-container">
               <img src={Logo} alt="" />
               <div className="div-information">
@@ -78,7 +78,7 @@ function Home({ ScreenSize }) {
             />
           </main>
           <div
-            className={`${ScreenSize > 992 ? "col-3" : ""}${
+            className={`${ScreenSize > 992 ? "col-4" : ""}${
               showOrderMobile ? "showOrderMobile" : "d-none"
             }`}
           >

@@ -40,13 +40,14 @@ const Orders = () => {
   }
 
   return (
-    <div className="order-container">
+    <div className="order-container-login">
+      <h2>Pedidos</h2>
       <div className="orders-user">
         {sortedOrders.map((order) => (
           <div key={order.id}>
             <span className="d-inline-flex gap-1">
               <button
-                className="btn btn-primary"
+                className="btn btn-danger"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target={`#orderCollapse${order.id}`}
@@ -78,6 +79,12 @@ const Orders = () => {
             </div>
           </div>
         ))}
+        {sortedOrders.length === 0 && (
+          <div className="empty-orders">
+            <i className="bi bi-bag-x"></i>
+            <span>Sem pedidos até o momento</span>
+          </div>
+        )}
       </div>
     </div>
   );

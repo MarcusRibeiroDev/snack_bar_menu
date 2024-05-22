@@ -40,7 +40,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
-              Email address
+              Endereço de Email
             </label>
             <input
               type="email"
@@ -54,7 +54,7 @@ const Login = () => {
               value={email}
             />
             <div id="emailHelp" className="form-text">
-              We will never share your email with anyone else.
+              Nunca compartilharemos seu e-mail com mais ninguém.
             </div>
           </div>
           <div className="mb-3">
@@ -73,7 +73,7 @@ const Login = () => {
             />
           </div>
           {!loading && (
-            <button className="btn btn-info" type="submit">
+            <button className="btn btn-danger btn-custom" type="submit">
               Entrar
             </button>
           )}

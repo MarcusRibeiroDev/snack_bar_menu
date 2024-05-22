@@ -1,0 +1,76 @@
+/* Orders.css */
+
+/* Estilização do contêiner principal */
+.order-container-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  font-family: "Rubik", sans-serif;
+  min-height: 80vh;
+  background-color: #fff;
+}
+
+/* Estilização para o contêiner de pedidos do usuário */
+.orders-user {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 4rem;
+}
+
+/* Estilização dos botões de pedido */
+.orders-user .btn-danger {
+  width: 28rem;
+  text-align: left;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.orders-user .btn-danger:hover {
+  background-color: #d54462;
+  border-color: #850000;
+}
+
+/* Estilização das cartas de pedidos */
+.orders-user .card {
+  margin-top: 1rem;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+}
+
+.orders-user .card-body {
+  padding: 1rem;
+}
+
+/* Estilização do texto dentro da carta */
+.orders-user .card-body p {
+  margin: 0.5rem 0;
+}
+
+/* Estilização da seção de pedidos vazios */
+.empty-orders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  color: #6c757d;
+}
+
+.empty-orders i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.empty-orders span {
+  font-size: 1.25rem;
+}
+
+/* Estilização para a animação da colapso */
+.collapse:not(.show) {
+  display: none;
+}
+
+.collapse.show {
+  display: block;
+}

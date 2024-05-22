@@ -1,9 +1,22 @@
-.container-register form {
+/* Register.css */
+.container-register {
+  min-height: 80vh;
+  width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  gap: 2rem;
+  font-family: "Rubik", sans-serif;
 }
 
-form input {
-  display: block;
+.container-register .btn-custom {
+  margin-right: 1rem;
+}
+
+.error {
+  color: red;
+}
+
+.form-control {
+  width: 28rem;
 }

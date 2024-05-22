@@ -9,13 +9,18 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [isValidForm, setIsValidForm] = useState(false); // Estado para verificar se o formulário é válido
+  const [isValidForm, setIsValidForm] = useState(false);
+  const [touched, setTouched] = useState({
+    email: false,
+    displayName: false,
+    password: false,
+    confirmPassword: false,
+  });
 
   const { createUser, error: authError, loading } = useAuthentication();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setError("");
 
     const user = {
@@ -30,7 +35,6 @@ const Register = () => {
     }
 
     const res = await createUser(user);
-
     console.log(res);
   };
 
@@ -40,28 +44,21 @@ const Register = () => {
     }
   }, [authError]);
 
-  // Função para validar o formato do email
   const isValidEmail = (email) => {
-    // Expressão regular para validar email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  // Função para validar o formato do número de telefone
   const isValidPhoneNumber = (phoneNumber) => {
-    // Expressão regular para validar número de telefone com DDD
     const phoneRegex = /^\d{2}\d{8,9}$/;
     return phoneRegex.test(phoneNumber);
   };
 
-  // Função para validar a senha
   const isValidPassword = (password) => {
-    // A senha deve ter pelo menos 6 caracteres, incluindo letras e números
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
     return passwordRegex.test(password);
   };
 
-  // Verifica se todos os campos são válidos
   useEffect(() => {
     const isFormValid =
       isValidEmail(email) &&
@@ -71,68 +68,96 @@ const Register = () => {
     setIsValidForm(isFormValid);
   }, [email, displayName, password, confirmPassword]);
 
+  const handleBlur = (field) => {
+    setTouched({ ...touched, [field]: true });
+  };
+
   return (
     <div className="container-register">
-      <h1>Cadastre-se para postar</h1>
-      <p>Crie seu usuário e compartilhe suas histórias</p>
+      <h2>Cadastre-se</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          <span>E-mail:</span>
+        <div className="mb-3">
+          <label htmlFor="registerEmail" className="form-label">
+            Endereço de Email
+          </label>
           <input
             type="email"
+            className="form-control"
+            id="registerEmail"
             name="email"
             required
             placeholder="E-mail do usuário"
             onChange={(e) => setEmail(e.target.value)}
+            onBlur={() => handleBlur("email")}
             value={email}
           />
-          {!isValidEmail(email) && <small>Formato de e-mail inválido</small>}
-        </label>
-        <label>
-          <span>Telefone - Whatsapp:</span>
+          {touched.email && !isValidEmail(email) && (
+            <small className="text-danger">Formato de e-mail inválido</small>
+          )}
+        </div>
+        <div className="mb-3">
+          <label htmlFor="registerPhone" className="form-label">
+            Telefone - Whatsapp
+          </label>
           <input
             type="tel"
+            className="form-control"
+            id="registerPhone"
             name="displayName"
             required
             placeholder="Digite o DDD seguido do número de telefone"
             onChange={(e) => setDisplayName(e.target.value)}
+            onBlur={() => handleBlur("displayName")}
             value={displayName}
           />
-          {!isValidPhoneNumber(displayName) && (
-            <small>Formato de telefone inválido</small>
+          {touched.displayName && !isValidPhoneNumber(displayName) && (
+            <small className="text-danger">Formato de telefone inválido</small>
           )}
-        </label>
-        <label>
-          <span>Senha:</span>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="registerPassword" className="form-label">
+            Senha
+          </label>
           <input
             type="password"
+            className="form-control"
+            id="registerPassword"
             name="password"
             required
             placeholder="Insira a senha"
             onChange={(e) => setPassword(e.target.value)}
+            onBlur={() => handleBlur("password")}
             value={password}
           />
-          {!isValidPassword(password) && (
-            <small>
+          {touched.password && !isValidPassword(password) && (
+            <small className="text-danger">
               A senha deve ter pelo menos 6 caracteres, incluindo letras e
               números
             </small>
           )}
-        </label>
-        <label>
-          <span>Confirmação de senha:</span>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="confirmPassword" className="form-label">
+            Confirmação de senha
+          </label>
           <input
             type="password"
+            className="form-control"
+            id="confirmPassword"
             name="confirmPassword"
             required
             placeholder="Confirme a senha"
             onChange={(e) => setConfirmPassword(e.target.value)}
+            onBlur={() => handleBlur("confirmPassword")}
             value={confirmPassword}
           />
-        </label>
-        {/* Desabilita o botão de cadastro se o formulário não for válido */}
+        </div>
         {!loading && (
-          <button className="btn btn-info" disabled={!isValidForm}>
+          <button
+            className="btn btn-danger btn-custom"
+            type="submit"
+            disabled={!isValidForm}
+          >
             Cadastrar
           </button>
         )}
@@ -141,7 +166,6 @@ const Register = () => {
             Aguarde...
           </button>
         )}
-
         {error && <p className="error">{error}</p>}
       </form>
     </div>
